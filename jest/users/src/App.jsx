@@ -1,12 +1,12 @@
-import './App.css';
 import { UserForm, UserShow } from './components/index';
-function App() {
+
+const App = () => {
   return (
     <>
       <UserForm />
       <UserShow />
     </>
   );
-}
+};
 
 export default App;

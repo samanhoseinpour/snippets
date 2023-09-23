@@ -1,13 +1,20 @@
 import { useState } from 'react';
 
-const UserForm = () => {
+const UserForm = ({ onUserAdd }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    console.log(name, email);
+      onUserAdd({ name, email });
+
+      setEmail('');
+      setName('');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -24,7 +31,7 @@ const UserForm = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Jhon Junior"
-          className="rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="rounded-md border-0 py-1.5 p-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />
       </div>
       <div>
@@ -32,11 +39,12 @@ const UserForm = () => {
           Email
         </label>
         <input
+          required
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="example@example.com"
-          className="rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="rounded-md border-0 py-1.5 p-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />
       </div>
       <button className="border-1 bg-blue-700 text-white px-6 py-4 rounded-full w-40">

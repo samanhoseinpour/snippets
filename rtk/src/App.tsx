@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from '../src/app/hooks';
 import {
   incremented,
   deceremented,
+  addAmount,
   reset,
 } from './features/counter/counterSlice';
 
@@ -21,6 +22,10 @@ const App: React.FC = () => {
     dispatch(reset());
   };
 
+  const handleAddAmount = () => {
+    dispatch(addAmount(3));
+  };
+
   return (
     <>
       <h1 className="text-white bg-blue-400">Lets learn redux-toolkit</h1>
@@ -38,6 +43,9 @@ const App: React.FC = () => {
           </button>
           <button className="border p-2" onClick={handleReset}>
             reset
+          </button>
+          <button className="border p-2" onClick={handleAddAmount}>
+            Add specific amount
           </button>
         </div>
       </div>

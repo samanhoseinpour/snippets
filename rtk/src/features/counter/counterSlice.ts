@@ -20,6 +20,10 @@ const counterSlice = createSlice({
     deceremented(state) {
       state.value--;
     },
+    // addSpecificAmount
+    addAmount(state, action: PayloadAction<number>) {
+      state.value += action.payload;
+    },
     // reset
     reset() {
       return initialState;
@@ -27,5 +31,6 @@ const counterSlice = createSlice({
   },
 });
 
-export const { incremented, deceremented, reset } = counterSlice.actions;
+export const { incremented, deceremented, addAmount, reset } =
+  counterSlice.actions;
 export default counterSlice.reducer;

@@ -1,4 +1,5 @@
-import Counter from './features/counter/Counter';
+import AddPosts from './features/posts/AddPosts';
+import PostsList from './features/posts/PostsList';
 
 const App = () => {
   return (
@@ -6,7 +7,8 @@ const App = () => {
       <h1 className="bg-red-50 text-center font-bold text-orange-600 uppercase py-5">
         redux toolkit second project
       </h1>
-      <Counter />
+      <AddPosts />
+      <PostsList />
     </>
   );
 };

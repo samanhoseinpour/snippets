@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
 
 import { addPost } from './postsSlice';
 
@@ -8,25 +7,19 @@ const AddPosts = () => {
   const dipatch = useDispatch();
   const inputRef = useRef(null);
 
-  const [postTitle, setPostTitle] = useState('');
-  const [postContent, setPostContent] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
   const handleAddPost = (e) => {
-    if (postTitle && postContent) {
+    if (title && content) {
       e.preventDefault();
-      dipatch(
-        addPost({
-          id: nanoid(),
-          title: postTitle,
-          content: postContent,
-        })
-      );
-      setPostTitle('');
-      setPostContent('');
+      dipatch(addPost(title, content));
+      setTitle('');
+      setContent('');
     }
   };
 
@@ -36,21 +29,21 @@ const AddPosts = () => {
         <div className="flex flex-row justify-around gap-2 mt-10">
           <input
             ref={inputRef}
-            value={postTitle}
+            value={title}
             placeholder="Post Title"
             type="text"
             id="post-title"
             className="block w-72 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-orange-500 focus:border-orange-500 outline-none"
-            onChange={(e) => setPostTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             required
           />
           <input
-            value={postContent}
+            value={content}
             placeholder="Content Title"
             type="text"
             id="post-content"
             className="block w-72 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-orange-500 focus:border-orange-500 outline-none"
-            onChange={(e) => setPostContent(e.target.value)}
+            onChange={(e) => setContent(e.target.value)}
             required
           />
           <button
